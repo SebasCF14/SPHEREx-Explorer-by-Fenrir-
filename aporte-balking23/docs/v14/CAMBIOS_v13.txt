@@ -1,0 +1,16 @@
+SPHEREx Explorer v13 -- Mosaico WCS de catálogos (solo main.py)
+
+Esta versión NO estira una capa de 80 px a 360: ya se dibujaba sobre 360x360.
+Distribuye la CONSULTA en 3 x 3 celdas que cubren el fotograma de 360x360
+para proyectar posiciones celestes reales en todo el campo.
+
+Se aplica a capas Gaia DR3 y AllWISE del timelapse SPHEREx.
+No modifica el panel de catálogos ni las vistas previas WISE.
+Cada mosaico requiere hasta 9 consultas de catálogo, que pueden tardar
+cuando ESA/IRSA fallan. Se reutiliza la caché del proyecto.
+Máximo visual de 18 fuentes por celda para evitar saturación (162 en total).
+La selección no es un censo completo del cielo ni verifica astrometría.
+
+Para instalar: detener Flask; respaldar main.py; extraer ZIP en la raíz;
+compilar con python -m py_compile .\main.py; iniciar python .\main.py.
+Para revertir: restaurar main_backup_v11.py.

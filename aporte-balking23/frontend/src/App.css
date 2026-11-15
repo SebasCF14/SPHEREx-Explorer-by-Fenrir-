@@ -1,0 +1,647 @@
+
+/* ==========================================
+   SPHEREx Explorer
+   NASA Space Apps Challenge
+
+   ESTILOS GENERALES
+========================================== */
+
+:root {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #ffffff;
+  background: #080f22;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block;
+  background: #080f22;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: #9bdcff;
+}
+
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid #9ce6ff;
+  outline-offset: 4px;
+}
+
+/* ==========================================
+   PÁGINA PRINCIPAL - LANDING
+========================================== */
+
+main {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 48px 24px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 40%,
+      #263e75 0%,
+      #141c3c 40%,
+      #080f22 80%
+    );
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.15;
+
+  margin: 0 0 24px;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #86d9ff
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+p {
+  color: #c3d3e8;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 0 40px;
+}
+
+/* BOTONES DE LA LANDING */
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 54px;
+  padding: 16px 30px;
+
+  border-radius: 12px;
+  border: 1px solid #438ccf;
+
+  background: #246db1;
+  color: #ffffff;
+
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+nav a:hover {
+  background: #368bd2;
+  transform: translateY(-3px);
+}
+
+/* BOTÓN INVESTIGADOR */
+
+nav a:nth-child(2) {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: #7c8fb3;
+}
+
+nav a:nth-child(2):hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================
+   MODO OBSERVADOR
+========================================== */
+
+.observer-page {
+  justify-content: flex-start;
+  padding-top: 45px;
+  gap: 16px;
+}
+
+.observer-page h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 12px 0;
+}
+
+.observer-page > p {
+  margin: 0 0 16px;
+}
+
+/* VOLVER AL INICIO */
+
+.back-link {
+  align-self: flex-start;
+  color: #9bdcff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ==========================================
+   PESTAÑAS GENERAL E INFRARROJO
+========================================== */
+
+.observer-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.observer-tabs button {
+  padding: 12px 24px;
+
+  border: 1px solid #536b96;
+  border-radius: 10px;
+
+  background: #172747;
+  color: #ffffff;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.observer-tabs button:hover {
+  background: #315b91;
+}
+
+.observer-tabs button.active {
+  background: #2779b9;
+  border-color: #89d7ff;
+}
+
+/* ==========================================
+   PANEL DEL OBSERVADOR
+========================================== */
+
+.observer-panel {
+  width: 100%;
+  max-width: 950px;
+
+  padding: 24px;
+
+  border: 1px solid #33486e;
+  border-radius: 18px;
+
+  background: rgba(10, 20, 42, 0.85);
+}
+
+.observer-panel h2 {
+  font-size: 1.6rem;
+  margin: 0 0 20px;
+  color: #ffffff;
+}
+
+.observer-panel p {
+  margin: 12px auto 20px;
+}
+
+/* ==========================================
+   VISOR ASTRONÓMICO
+========================================== */
+
+.sky-viewer {
+  position: relative;
+
+  min-height: 320px;
+  width: 100%;
+
+  padding: 30px;
+
+  border: 1px solid #38557c;
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #1e3866 0%,
+      #101e3c 45%,
+      #080f22 85%
+    );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.sky-viewer h3 {
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin: 16px 0;
+}
+
+.sky-viewer p {
+  font-size: 1rem;
+  color: #b7cce4;
+  max-width: 550px;
+  margin: 0;
+}
+
+/* IDENTIFICADOR DE DEMOSTRACIÓN */
+
+.demo-label {
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border: 1px solid #438ccf;
+  border-radius: 20px;
+
+  color: #a4ddff;
+  background: rgba(36, 109, 177, 0.15);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* ==========================================
+   CONTROLES DEL REPRODUCTOR
+========================================== */
+
+.viewer-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.viewer-controls button {
+  min-height: 48px;
+  padding: 12px 20px;
+
+  border: 1px solid #536b96;
+  border-radius: 10px;
+
+  background: #172747;
+  color: #ffffff;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.viewer-controls button:hover {
+  background: #315b91;
+  transform: translateY(-2px);
+}
+
+/* BOTÓN CENTRAL: REPRODUCIR / PAUSAR */
+
+.viewer-controls button:nth-child(2) {
+  background: #246db1;
+  border-color: #438ccf;
+}
+
+.viewer-controls button:nth-child(2):hover {
+  background: #368bd2;
+}
+
+/* ==========================================
+   VELOCIDAD Y CANALES
+========================================== */
+
+.speed-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 12px;
+  margin-top: 20px;
+
+  color: #d2e4f6;
+  font-size: 1rem;
+}
+
+.speed-control select {
+  min-height: 44px;
+  padding: 10px 16px;
+
+  border-radius: 8px;
+  border: 1px solid #536b96;
+
+  background: #172747;
+  color: #ffffff;
+
+  cursor: pointer;
+}
+
+.speed-control select:hover {
+  border-color: #89d7ff;
+}
+
+/* ==========================================
+   INFORMACIÓN DEL FOTOGRAMA
+========================================== */
+
+.observer-panel .viewer-note {
+  font-size: 0.9rem;
+  color: #9cb5d2;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   DISEÑO RESPONSIVE
+========================================== */
+
+@media (max-width: 600px) {
+
+  main {
+    padding: 30px 16px;
+  }
+
+  h1 {
+    letter-spacing: -1px;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  nav {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  nav a {
+    width: 100%;
+  }
+
+  .observer-page {
+    padding-top: 25px;
+  }
+
+  .observer-panel {
+    padding: 15px;
+  }
+
+  .observer-panel h2 {
+    font-size: 1.3rem;
+  }
+
+  .sky-viewer {
+    min-height: 240px;
+    padding: 15px;
+  }
+
+  .sky-viewer h3 {
+    font-size: 1.3rem;
+  }
+
+  .viewer-controls {
+    gap: 8px;
+  }
+
+  .viewer-controls button {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .observer-tabs {
+    width: 100%;
+  }
+
+  .observer-tabs button {
+    flex: 1;
+  }
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  nav a,
+  .viewer-controls button,
+  .observer-tabs button {
+    transition: none;
+  }
+
+  nav a:hover,
+  .viewer-controls button:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================
+   MODO INVESTIGADOR - AUTENTICACIÓN
+========================================== */
+
+.investigator-page {
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid #354e75;
+  background: rgba(12, 25, 50, 0.96);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.auth-header h1 {
+  font-size: 1.8rem;
+  letter-spacing: -1px;
+  margin: 10px 0;
+}
+
+.auth-header h2 {
+  font-size: 1.3rem;
+  margin: 10px 0;
+}
+
+.auth-header p {
+  font-size: 0.95rem;
+  margin: 10px 0 24px;
+}
+
+.auth-icon {
+  font-size: 2.5rem;
+  color: #83d8ff;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #526989;
+  background: #142440;
+  color: #ffffff;
+}
+
+.auth-tabs button.active {
+  background: #2875ba;
+  border-color: #83d8ff;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.auth-form label {
+  color: #dce9f9;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.auth-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  border-radius: 9px;
+  border: 1px solid #526989;
+  background: #0a1730;
+  color: #ffffff;
+  font: inherit;
+}
+
+.auth-form input:focus-visible {
+  outline: 2px solid #83d8ff;
+  outline-offset: 2px;
+}
+
+.password-field {
+  display: flex;
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 85px;
+}
+
+.password-field button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #9bdcff;
+  padding: 8px;
+}
+
+.auth-submit {
+  min-height: 48px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #438ccf;
+  border-radius: 10px;
+  background: #2875ba;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.auth-submit:hover {
+  background: #368bd2;
+}
+
+.auth-message {
+  font-size: 0.9rem;
+  color: #f3c98b;
+  margin: 5px 0;
+}
+
+.auth-footer,
+.auth-disclaimer {
+  font-size: 0.85rem;
+  color: #a9bed9;
+  margin: 20px auto 0;
+}
+
+.auth-disclaimer {
+  font-size: 0.75rem;
+  border-top: 1px solid #354e75;
+  padding-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .auth-card {
+    padding: 22px 16px;
+  }
+}

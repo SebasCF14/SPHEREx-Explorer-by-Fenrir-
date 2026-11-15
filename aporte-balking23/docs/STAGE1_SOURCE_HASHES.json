@@ -1,0 +1,18 @@
+{
+  "source_archive": "SPHEREx-Explorer(1).zip",
+  "source_sha256": "e028841a77d9131624e46727540d72cc1f8882a8e70af4fc152fb2284c62eb8d",
+  "original_modules_sha256": {
+    "main.py": "c61e67b2db4e0029536a8bd2667671767b377e96a74d0fe078e5eb56a415f79d",
+    "spherex_data.py": "bcdc12b86dcf029b27ea4e29275c51e9f024a55fb31a22a454c7974cf928f33e",
+    "spherex_analysis.py": "57e269b7e3fff2bf6c8618b2a10b1a72cc8c7e2289b505b11620eebb026f963e",
+    "astronomy_catalogs.py": "231279731586ab5571ae920f8315b37fb706a50c14e7c3003bf903265afd9234",
+    "viewer.py": "84ed699bcea75000916055f829bfd71fdcc1a4a5ef16c58100eb0fb8b3373885"
+  },
+  "migrated_modules_sha256": {
+    "main.py": "bb8e2c0b32f2ead29e408da142e37a1bfca634c6ff4d87662b67a2659a093aef",
+    "spherex_data.py": "f3fd09c880931efa54851c38ca4ecc2560f2eb10a8f176e2203dabce14da0aa9",
+    "spherex_analysis.py": "cd17adafa26bb8fbab5542068819333949217b6ab89926efacfc9fc439b324f5",
+    "astronomy_catalogs.py": "879d7064cb118f9f4459e3fbfa826b51166f670c3328373e3295fc9793e7fa7c",
+    "viewer.py": "84ed699bcea75000916055f829bfd71fdcc1a4a5ef16c58100eb0fb8b3373885"
+  }
+}

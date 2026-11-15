@@ -1,0 +1,104 @@
+--- original/main.py
++++ backend/spherex_explorer/main.py
+@@ -1,9 +1,9 @@
+ """Punto de entrada Flask: rutas, API y servidor del SPHEREx Explorer modular.
+-Ejecutar: python main.py (con el entorno virtual activado).
++Ejecutar desde la raiz: python -m backend.spherex_explorer.main.
+ """
+ 
+-import spherex_data as data
+-from spherex_data import (
++from . import spherex_data as data
++from .spherex_data import (
+     ALLOWED_COLLECTIONS,
+     ALLOWED_DETECTORS,
+     ALLOWED_MODES,
+@@ -53,20 +53,20 @@
+     WISE_PREVIEW_CACHE_DIR,
+     ZScaleInterval,
+ )
+-from spherex_analysis import (
++from .spherex_analysis import (
+     aggregate_spectral_points,
+     get_dr1_cube_spectrum,
+     select_balanced_spectrum_records,
+     start_job,
+     wcs_from_metadata,
+ )
+-from astronomy_catalogs import (
++from .astronomy_catalogs import (
+     draw_catalog_overlay,
+     query_catalog_sources,
+     query_wise_images,
+     wise_request_with_host_fallback,
+ )
+-from viewer import VIEWER_HTML
++from .viewer import VIEWER_HTML
+ from concurrent.futures import ThreadPoolExecutor as _SpectrumExecutor
+ from threading import Lock as _SpectrumLock
+ from uuid import uuid4 as _spectrum_uuid
+--- original/spherex_data.py
++++ backend/spherex_explorer/spherex_data.py
+@@ -122,12 +122,14 @@
+     "spherex_qr3_deep"
+ }
+ 
+-PROJECT_DIR = Path.home() / "Documents" / "Proyectos" / "SPHEREx"
+-
+-if PROJECT_DIR.exists():
+-    CACHE_DIR = PROJECT_DIR / "cache"
+-else:
+-    CACHE_DIR = Path(__file__).resolve().parent / "spherex_cache"
++# Cache location is configurable and is never served as a public static directory.
++# Set SPHEREX_CACHE_DIR (or CACHE_DIR) to reuse an existing scientific cache.
++# By default, use the repository's cache/ directory.
++CACHE_DIR = Path(
++    os.environ.get("SPHEREX_CACHE_DIR")
++    or os.environ.get("CACHE_DIR")
++    or (Path(__file__).resolve().parents[2] / "cache")
++).expanduser().resolve()
+ 
+ CUTOUT_CACHE_DIR = CACHE_DIR / "cutouts"
+ FULL_FITS_CACHE_DIR = CACHE_DIR / "fits"
+--- original/spherex_analysis.py
++++ backend/spherex_explorer/spherex_analysis.py
+@@ -2,8 +2,8 @@
+ Usa servicios y estado centralizados en spherex_data.
+ """
+ 
+-import spherex_data as data
+-from spherex_data import (
++from . import spherex_data as data
++from .spherex_data import (
+     as_completed,
+     atomic_replace,
+     CONNECT_TIMEOUT,
+--- original/astronomy_catalogs.py
++++ backend/spherex_explorer/astronomy_catalogs.py
+@@ -3,7 +3,7 @@
+ Gaia v9: respaldo ARI; AllWISE v10: VizieR Harvard; v11: recortes unWISE neo1.
+ """
+ 
+-from spherex_data import (
++from .spherex_data import (
+     atomic_replace,
+     CATALOG_CACHE_DIR,
+     CATALOG_CACHE_TTL,
+@@ -36,7 +36,7 @@
+     WISE_METADATA_CACHE_TTL,
+     WISE_SIA_MAXREC,
+ )
+-from spherex_analysis import format_mjd
++from .spherex_analysis import format_mjd
+ from urllib.parse import parse_qs, quote, unquote
+ 
+ # Gaia DR3: la réplica pública de ARI Heidelberg actúa como respaldo de ESA.
+@@ -596,7 +596,7 @@
+             return cache_path, True
+     # Las consultas idénticas se serializan para evitar descargas simultáneas.
+     try:
+-        from spherex_data import get_cache_lock
++        from .spherex_data import get_cache_lock
+         lock = get_cache_lock("unwise-v11|" + cache_key)
+     except ImportError:
+         lock = Lock()
